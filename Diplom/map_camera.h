@@ -29,14 +29,16 @@
 #include <stdint.h>
 #include <iostream>
 #include <array>
+#include <string>
+#include <log_class.h>
 
 struct Camera{
 public:
-
     // Constructor
     Camera(void){
         // Creating mapping file
         this->map_file = CreateFileMappingA(INVALID_HANDLE_VALUE, NULL, PAGE_READWRITE, 0, 256, "Camera_map");
+
         // Binding it to the float array
         this->map_buffer = (float *)MapViewOfFile(this->map_file, FILE_MAP_ALL_ACCESS, 0, 0, 256);
         // Setting the map file as some random number
@@ -102,6 +104,7 @@ public:
         CloseHandle(this->map_file);
     }
 private:
+    std::ofstream * log;
     float * map_buffer;
     HANDLE map_file;
 };

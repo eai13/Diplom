@@ -23,7 +23,7 @@
 #include "plot_lib.h"
 #include <fstream>
 #include <Windows.h>
-#include <QPixmap>
+#include <log_class.h>
 
 // File writing
 char separation_symbol = ';';
@@ -57,9 +57,6 @@ void clear_plots(void){
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow){
 
     ui->setupUi(this);
-
-    QPixmap map("map.bmp");
-    ui->label_mapimage->setPixmap(map);
 
     // Set validators
     ui->lineedit_comport->setValidator(new QIntValidator(0, 99, this));

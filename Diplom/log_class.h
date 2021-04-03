@@ -17,7 +17,7 @@ struct Log{
     }
 
     // Write the event
-    void write_event(std::string object, std::string func, std::string event, int result){
+    void write_event(std::string object, std::string func, std::string event, float result){
         this->log_file << sq(object) + fg(func) + is + ev(event) << result << std::endl;
     }
     // For functions start and end
@@ -33,6 +33,7 @@ private:
     std::string sq(std::string name){ return " [" + name + "] "; }
     // Figures the string
     std::string fg(std::string name){ return " {" + name + "} "; }
+    // Adds '=' to the string
     std::string ev(std::string name){ return " " + name + " = "; }
 
     std::ofstream log_file;

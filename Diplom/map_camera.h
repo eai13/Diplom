@@ -39,7 +39,7 @@ public:
     // Constructor
     Camera(void){
         std::string func = "Constructor";
-        //logfile->write_begin(name, func);
+        logfile->write_begin(name, func);
         // Creating mapping file
         this->map_file = CreateFileMappingA(INVALID_HANDLE_VALUE, NULL, PAGE_READWRITE, 0, 256, "Camera_map");
         logfile->write_event(name, func, "Map file create", (int)this->map_file);
@@ -67,14 +67,14 @@ public:
         uint8_t wait_time = 0;
         // If no connected then send connection request and check for connection set for 30 secs
         if (this->check_connection() != 1){
-            logfile->write_event(name, func, "Enable", this->map_buffer[CONN_ENABLE_CAM]);
             this->map_buffer[CONN_ENABLE_CAM] = 1;
+            logfile->write_event(name, func, "Enable", this->map_buffer[CONN_ENABLE_CAM]);
             while (this->check_connection() != 1){
                 logfile->write_event(name, func, "Timeout", wait_time);
                 Sleep(1000);
                 if ((wait_time++) == 59){
-                    logfile->write_event(name, func, "Enable", 0);
                     this->map_buffer[CONN_ENABLE_CAM] = 0;
+                    logfile->write_event(name, func, "Enable", this->map_buffer[CONN_ENABLE_CAM]);
                     logfile->write_end(name, func);
                     return 0;
                 }
@@ -106,7 +106,7 @@ public:
     uint8_t check_connection(void){
         std::string func = "check_connection";
         logfile->write_begin(name,func);
-        logfile->write_event(name, func, "Connection", this->map_buffer[CONN_SET_CAM]);
+        logfile->write_event(name, func, "Connection check", this->map_buffer[CONN_SET_CAM]);
         logfile->write_end(name, func);
         return this->map_buffer[CONN_SET_CAM];
     }

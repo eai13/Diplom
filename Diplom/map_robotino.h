@@ -67,16 +67,16 @@
 #include <log_class.h>
 
 extern Log * logfile;
-static std::string name = "ROBOTINO";
 
 struct Robotino{
 public:
     // Setting up the map buffer
     Robotino(void){
+        name = "ROBOTINO";
         std::string func = "Constructor";
         logfile->write_begin(name, func);
         this->map_file = CreateFileMappingA(INVALID_HANDLE_VALUE, NULL, PAGE_READWRITE, 0, 256, "Robotino_map");
-        logfile->write_event(name, func, "Map file create", (int)this->map_file);
+        logfile->write_event(name, func, "Map file create", (int64_t)this->map_file);
         this->map_buffer = (float *)MapViewOfFile(this->map_file, FILE_MAP_ALL_ACCESS, 0, 0, 256);
         for (int i = 0; i < 256; i++) this->map_buffer[i] = -1;
         logfile->write_end(name, func);
@@ -323,6 +323,7 @@ public:
     }
 
 private:
+    std::string name = "ROBOTINO";
     float * map_buffer;
     HANDLE map_file;
 };

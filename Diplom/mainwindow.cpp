@@ -17,9 +17,9 @@
 #define ANGLE_PLOT      7
 #define DELTA_ANG_PLOT  9
 
-#include "map_camera.h"
-#include "map_robotino.h"
-#include "map_serial.h"
+#include <map_camera.h>
+#include <map_robotino.h>
+#include <map_serial.h>
 #include "plot_lib.h"
 #include <fstream>
 #include <Windows.h>

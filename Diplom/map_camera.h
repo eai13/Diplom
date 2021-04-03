@@ -38,11 +38,12 @@ struct Camera{
 public:
     // Constructor
     Camera(void){
+        name = "CAMERA";
         std::string func = "Constructor";
         logfile->write_begin(name, func);
         // Creating mapping file
         this->map_file = CreateFileMappingA(INVALID_HANDLE_VALUE, NULL, PAGE_READWRITE, 0, 256, "Camera_map");
-        logfile->write_event(name, func, "Map file create", (int)this->map_file);
+        logfile->write_event(name, func, "Map file create", (int64_t)this->map_file);
         // Binding it to the float array
         this->map_buffer = (float *)MapViewOfFile(this->map_file, FILE_MAP_ALL_ACCESS, 0, 0, 256);
         // Setting the map file as some random number
@@ -54,7 +55,7 @@ public:
     void set_camera_number(uint8_t number){
         std::string func = "set_camera_number";
         logfile->write_begin(name, func);
-        logfile->write_event(name, func, "number", this->map_buffer[CAMERA]);
+        logfile->write_event(name, func, "Camera number", this->map_buffer[CAMERA]);
         this->map_buffer[CAMERA] = number;
         logfile->write_end(name, func);
     }
@@ -142,9 +143,9 @@ public:
     }
 
 private:
+    std::string name = "CAMERA";
     float * map_buffer;
     HANDLE map_file;
-    std::string name = "CAMERA";
 };
 
 #endif // MAP_CAMERA_H

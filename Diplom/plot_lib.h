@@ -9,18 +9,25 @@
 #include <iostream>
 #include <vector>
 #include <array>
+#include <log_class.h>
+
+extern Log * logfile;
 
 struct TimePlot{
 public:
 
     // Constructor
     TimePlot(QString title, std::vector<QString> series_names, int32_t range_min, int32_t range_max, uint16_t width, uint16_t height, QFrame * parent){
+        name = title.toUpper().toStdString();
+        std::string func = "Constructor";
+        logfile->write_begin(name, func);
         // Time resetting
         this->time = 0;
         this->time_increment = 0.5;
 
         // Preparing the series
         this->series.resize(series_names.size());
+        logfile->write_event(name, func, "Series size", series_names.size());
         this->chart = new QChart;
 
         // Setting up the axes
@@ -48,6 +55,7 @@ public:
             this->series[i]->attachAxis(this->axis_x);
             this->series[i]->attachAxis(this->axis_y);
             this->series[i]->setName(series_names[i]);
+            logfile->write_event(name, func, "Series name " + series_names[i].toStdString(), 1);
         }
 
         this->qcv = new QChartView(this->chart);
@@ -56,31 +64,51 @@ public:
         this->qcv->setParent(parent);
 
         this->auto_scale_on = 0;
+        logfile->write_event(name, func, "Autoscale", this->auto_scale_on);
         this->min = -2;
+        logfile->write_event(name, func, "Scale Min", this->min);
         this->max = 2;
+        logfile->write_event(name, func, "Scale Max", this->max);
+        logfile->write_end(name, func);
     }
 
     // Makes the plot visible or invisible
     void SetActive(bool state){
+        std::string func = "SetActive";
+        logfile->write_begin(name, func);
         this->qcv->setVisible(state);
+        logfile->write_event(name, func, "active", 1);
+        logfile->write_end(name, func);
     }
 
     // Setting the max and min values for the time axis
     void SetTimeAxisRange(uint32_t min_time, uint32_t max_time){
+        std::string func = "SetTimeAxisRange";
+        logfile->write_begin(name, func);
         this->axis_x->setMax(max_time);
+        logfile->write_event(name, func, "Max time", max_time);
         this->axis_x->setMin(min_time);
+        logfile->write_event(name, func, "Min time", min_time);
+        logfile->write_end(name, func);
     }
 
     // Setting the max and min values for the value axis
     void SetValueAxisRange(int32_t min_value, int32_t max_value){
+        std::string func = "SetValueAxisRange";
+        logfile->write_begin(name, func);
         this->min = min_value;
         this->max = max_value;
         this->axis_y->setMin(min_value);
+        logfile->write_event(name, func, "Min value", min_value);
         this->axis_y->setMax(max_value);
+        logfile->write_event(name, func, "Max value", max_value);
+        logfile->write_end(name, func);
     }
 
     // Clearing the plot
     void Clear(void){
+        std::string func = "Clear";
+        logfile->write_begin(name, func);
         for (auto iter = this->series.begin(); iter != this->series.end(); iter++) (*iter)->clear();
         this->axis_x->setMin(0);
         this->axis_x->setMax(50);
@@ -89,13 +117,18 @@ public:
         this->min = -2;
         this->max = 2;
         this->SetValueAxisRange(-2, 2);
+        logfile->write_end(name, func);
     }
 
     // Adding new point to the plot
     void AddPoint(std::vector<float> data){
+        std::string func = "AddPoint";
+        logfile->write_begin(name, func);
         if (data.size() == this->series.size()){
             for (size_t i = 0; i < data.size(); i++){
                 this->series[i]->append(this->time, data[i]);
+                logfile->write_event(name, func, "New point Time", this->time);
+                logfile->write_event(name, func, "New point Value", data[i]);
                 if (auto_scale_on){
                     if (this->max <= data[i]) this->max = data[i] * 1.1;
                     if (this->min >= data[i]) this->min = data[i] * 1.1;
@@ -103,33 +136,55 @@ public:
                 }
             }
             this->time += time_increment;
+            logfile->write_event(name, func, "Current time", this->time);
             if (this->time >= axis_x->max()) axis_x->setMax(this->time + 1);
         }
+        logfile->write_end(name, func);
     }
 
     // Setting the increment value for time
     void SetTimeIncrement(float dt){
+        std::string func = "SetTimeIncrement";
+        logfile->write_begin(name, func);
         this->time_increment = dt;
+        logfile->write_event(name, func, "New time increment", this->time_increment);
+        logfile->write_end(name, func);
     }
 
     // Gets time of plotting
     float GetTime(void){
+        std::string func = "GetTime";
+        logfile->write_begin(name, func);
+        logfile->write_event(name, func, "Current time", this->time);
+        logfile->write_end(name, func);
         return this->time;
     }
 
     // Returns max of the value axis
     float GetMax(void){
+        std::string func = "GetMax";
+        logfile->write_begin(name, func);
+        logfile->write_event(name, func, "Max value", this->axis_y->max());
+        logfile->write_end(name, func);
         return this->axis_y->max();
     }
 
     // Returns min of the value axis
     float GetMin(void){
+        std::string func = "GetMin";
+        logfile->write_begin(name, func);
+        logfile->write_event(name, func, "Min value", this->axis_y->min());
+        logfile->write_end(name, func);
         return this->axis_y->min();
     }
 
     // Auto Scale on/off
     void AutoScale(bool mode){
+        std::string func = "AutoScale";
+        logfile->write_begin(name, func);
         this->auto_scale_on = mode;
+        logfile->write_event(name, func, "Autoscale", this->auto_scale_on);
+        logfile->write_end(name, func);
     }
 private:
     QChartView *                qcv;
@@ -141,6 +196,7 @@ private:
     float                       time_increment;
     int32_t                     min, max;
     uint8_t                     auto_scale_on;
+    std::string                 name;
 };
 
 #endif // PLOT_LIB_H

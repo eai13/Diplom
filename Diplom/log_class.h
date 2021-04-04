@@ -1,6 +1,8 @@
 #ifndef LOG_CLASS_H
 #define LOG_CLASS_H
 
+#define WRITE_LOG 1
+
 #include <string>
 #include <fstream>
 
@@ -9,23 +11,27 @@ struct Log{
     Log(std::string filename){
         this->log_file.open(filename);
         if (this->log_file.is_open()){
-            this->log_file << "[Log] {Constructor}" << is << "Initialization +" << std::endl;
+            this->log_file << "[Log] {Constructor}" << is << " Initialization + " << std::endl;
+            this->log_file << "LOGGING " << ((WRITE_LOG) ? "ENABLED" : "DISABLED") << std::endl;
         }
         else {
-            this->log_file << "[Log] {Constructor}" << is << "Initialization -" << std::endl;
+            this->log_file << "[Log] {Constructor}" << is << " Initialization - " << std::endl;
         }
     }
 
     // Write the event
     void write_event(std::string object, std::string func, std::string event, float result){
-        this->log_file << sq(object) + fg(func) + is + ev(event) << result << std::endl;
+        if (WRITE_LOG) this->log_file << sq(object) + fg(func) + is + ev(event) << result << std::endl;
     }
     // For functions start and end
     void write_begin(std::string object, std::string func){
-        this->log_file << sq(object) + fg(func) + is + "Start" << std::endl;
+        if (WRITE_LOG){
+            this->log_file << "----------------------------------------" << std::endl;
+            this->log_file << sq(object) + fg(func) + is + "Start" << std::endl;
+        }
     }
     void write_end(std::string object, std::string func){
-        this->log_file << sq(object) + fg(func) + is + "End" << std::endl;
+        if (WRITE_LOG) this->log_file << sq(object) + fg(func) + is + "End" << std::endl;
     }
 
 private:

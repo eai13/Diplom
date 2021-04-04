@@ -23,7 +23,10 @@
 #include "plot_lib.h"
 #include <fstream>
 #include <Windows.h>
-#include <log_class.h>
+
+extern Log * logfile;
+
+static std::string name = "MAIN WINDOW";
 
 // File writing
 char separation_symbol = ';';

@@ -61,6 +61,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
     ui->setupUi(this);
 
+    std::string func = "Constructor";
+    logfile->write_begin(name, func);
+
     // Set validators
     ui->lineedit_comport->setValidator(new QIntValidator(0, 99, this));
     ui->lineedit_webcamnumber->setValidator(new QIntValidator(0, 99, this));
@@ -141,20 +144,29 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     active_plot = plots[DELTA_ANG_PLOT];
     ui->lineedit_plotscalemax->setText(QString::fromStdString(std::to_string(active_plot->GetMax())));
     ui->lineedit_plotscalemin->setText(QString::fromStdString(std::to_string(active_plot->GetMin())));
+    logfile->write_end(name, func);
 }
 
 // Destructor
 MainWindow::~MainWindow(){
+    std::string func = "Destructor";
+    logfile->write_begin(name, func);
     // Stopping all the timers of active
     on_pushbutton_disconnect_clicked();
     system("taskkill /F /IM Robotino_program.exe");
+    logfile->write_event(name, func, "taskkill Robotino", 1);
     system("taskkill /F /IM serial.exe");
+    logfile->write_event(name, func, "taskkill Serial", 1);
     system("taskkill /F /IM Cam_program.exe");
+    logfile->write_event(name, func, "taskkill Camera", 1);
+    logfile->write_end(name, func);
     delete ui;
 }
 
 // Timers for data reception
 void MainWindow::robot_data_reception(){
+    std::string func = "robot_data_reception";
+    logfile->write_begin(name, func);
     // Writing data acquisition mode for serial (gyro and accel)
     if (ui->combobox_gyroaccelprocesstype->currentText() == "True")
         serial->set_processing_type(MODE_TRUE);
@@ -224,6 +236,7 @@ void MainWindow::robot_data_reception(){
 
     // Data writing
     if (data_file.is_open()){
+        logfile->write_event(name, func, "Write data to file", 1);
         // Time
         data_file << plots[POSITION_PLOT]->GetTime() << separation_symbol;
         // Gyro X, Gyro Y, Gyro Z
@@ -253,17 +266,29 @@ void MainWindow::robot_data_reception(){
         // Process type speed and ticks
         data_file << ui->combobox_speedpositionprocesstype->currentText().toStdString() << std::endl;
     }
+    else {
+        logfile->write_event(name, func, "Write data to file", 0);
+    }
+    logfile->write_end(name, func);
 }
 
 // Connection button clicked
 void MainWindow::on_pushbutton_connect_clicked(){
+    std::string func = "on_pushbutton_connect_clicked";
+    logfile->write_begin(name, func);
+    logfile->write_event(name, func, "COMPORT CORRECT", (ui->lineedit_comport->text().length() > 0));
+    logfile->write_event(name, func, "CAMERA CORRECT", (ui->lineedit_webcamnumber->text().length() > 0));
+    logfile->write_event(name, func, "ROBOTINO IP", (ui->lineedit_robotinoip->text().length() > 0));
     // Reading data from the connection fields
     if ((ui->lineedit_comport->text().length() > 0) && (ui->lineedit_webcamnumber->text().length() > 0) && (ui->lineedit_robotinoip->text().length() > 0)){
         serial->set_com(ui->lineedit_comport->text().toInt(), ui->combobox_baudrate->currentText().toInt());
         robotino->set_ip(ui->lineedit_robotinoip->text().toStdString());
         camera->set_camera_number(ui->lineedit_webcamnumber->text().toInt());
     }
-    else return;
+    else{
+        logfile->write_end(name, func);
+        return;
+    }
 
     // Sending connection command
     serial->set_connection();
@@ -271,26 +296,35 @@ void MainWindow::on_pushbutton_connect_clicked(){
     camera->set_connection();
 
     // Checking for connection availability for all channels
-    std::cout << (uint16_t)serial->check_connection() << std::endl;
     if (serial->check_connection() == 0){
+        logfile->write_event(name, func, "Connection available", 0);
         ui->label_connectionserial->setText("DISCONNECTED");
         serial->disconnect();
     }
-    else if (serial->check_connection() == 1) ui->label_connectionserial->setText("CONN AVAILABLE");
+    else if (serial->check_connection() == 1){
+        logfile->write_event(name, func, "Connection available", 1);
+        ui->label_connectionserial->setText("CONN AVAILABLE");
+    }
 
-    std::cout << (uint16_t)robotino->check_connection() << std::endl;
     if (robotino->check_connection() == 0){
+        logfile->write_event(name, func, "Connection available", 0);
         ui->label_connectionrobotino->setText("DISCONNECTED");
         robotino->disconnect();
     }
-    else if (robotino->check_connection() == 1) ui->label_connectionrobotino->setText("CONN AVAILABLE");
+    else if (robotino->check_connection() == 1){
+        logfile->write_event(name, func, "Connection available", 1);
+        ui->label_connectionrobotino->setText("CONN AVAILABLE");
+    }
 
-    std::cout << (uint16_t)camera->check_connection() << std::endl;
     if (camera->check_connection() == 0){
+        logfile->write_event(name, func, "Connection available", 0);
         ui->label_connectionwebcam->setText("DISCONNECTED");
         camera->disconnect();
     }
-    else if (camera->check_connection() == 1) ui->label_connectionwebcam->setText("CONN AVAILABLE");
+    else if (camera->check_connection() == 1){
+        logfile->write_event(name, func, "Connection available", 1);
+        ui->label_connectionwebcam->setText("CONN AVAILABLE");
+    }
 
     // If connection succeeded
     if ((serial->check_connection() == 1) && (robotino->check_connection() == 1) && (camera->check_connection() == 1)){
@@ -334,23 +368,26 @@ void MainWindow::on_pushbutton_connect_clicked(){
 }
 // Disconnect button clicked
 void MainWindow::on_pushbutton_disconnect_clicked(){
-    std::cout << "DISCONNECT: "; // <<< DEBUG
+    std::string func = "on_pushbutton_disconnect_clicked";
+    logfile->write_begin(name, func);
+
+    logfile->write_event(name, func, "Robotino Timer Active", robot_data_timer->isActive());
     // Stopping the timer
     if (robot_data_timer->isActive()){
-        std::cout << "TIMER STOPPED ; "; // <<< DEBUG
+        logfile->write_event(name, func, "Robotino Timer Stop", 1);
         robot_data_timer->stop();
         robot_data_timer->disconnect(robot_data_timer, SIGNAL(timeout()), this, SLOT(robot_data_reception()));
     }
 
+    logfile->write_event(name, func, "Data file open", data_file.is_open());
     // Write file closing
     if (data_file.is_open()){
-        std::cout << "DATA FILE CLOSED ; "; // <<< DEBUG
+        logfile->write_event(name, func, "Data file close", 1);
         data_file.close();
     }
 
     // Serial data processing
     if (serial->check_connection() == 1) {
-        std::cout << "SERIAL DISCONNECT ; "; // <<< DEBUG
         serial->disconnect();
     }
     ui->lineedit_gyrox->setText(" ");
@@ -364,7 +401,6 @@ void MainWindow::on_pushbutton_disconnect_clicked(){
     // Roboino data processing
     if (robotino->check_connection() == 1){
         robotino->disconnect();
-        std::cout << "ROBOTINO DISCONNECT ; "; // <<< DEBUG
     }
     ui->lineedit_positionwheel0->setText(" ");
     ui->lineedit_positionwheel1->setText(" ");
@@ -385,7 +421,6 @@ void MainWindow::on_pushbutton_disconnect_clicked(){
     // Camera data processing
     if (camera->check_connection() == 1){
         camera->disconnect();
-        std::cout << "CAMERA DISCONNECT ; "; // <<< DEBUG
     }
     ui->lineedit_cameradeltafi->setText(" ");
     ui->lineedit_cameradeltax->setText(" ");
@@ -403,92 +438,106 @@ void MainWindow::on_pushbutton_disconnect_clicked(){
     ui->lineedit_robotinoip->setEnabled(true);
     ui->lineedit_webcamnumber->setEnabled(true);
     ui->combobox_baudrate->setEnabled(true);
-    std::cout << std::endl; // <<< DEBUG
 
     ui->label_connectionrobotino->setText("DISCONNECTED");
     ui->label_connectionserial->setText("DISCONNECTED");
     ui->label_connectionwebcam->setText("DISCONNECTED");
+
+    logfile->write_end(name, func);
 }
 
+// Writing period set
 void MainWindow::on_pushbutton_setwritingperiod_clicked(){
-    std::cout << "WRITING PERIOD CHANGED: "; // <<< DEBUG
+    std::string func = "on_pushbutton_setwritingperiod_clicked";
+    logfile->write_begin(name, func);
+
     if (ui->lineedit_writingperiod->text().toInt() < 20){
         ui->lineedit_writingperiod->setText("20");
-        std::cout << "WAS <20 ; "; // <<< DEBUG
+        logfile->write_event(name, func, "Writing period Error", 20);
     }
 
     float dt = ui->lineedit_writingperiod->text().toFloat() / 1000;
-    std::cout << "dt = " << dt << " ; "; // <<< DEBUG
 
     for (auto iter = plots.begin(); iter != plots.end(); iter++) (*iter)->SetTimeIncrement(dt);
 
-    if (robot_data_timer->isActive()) robot_data_timer->stop();
+    logfile->write_event(name, func, "Robotino timer active", robot_data_timer->isActive());
+    if (robot_data_timer->isActive()){
+        logfile->write_event(name, func, "Robotino timer stop", 1);
+        robot_data_timer->stop();
+    }
+    logfile->write_event(name, func, "Robotino timer start", 1);
     robot_data_timer->start(ui->lineedit_writingperiod->text().toInt());
-    std::cout << "TIMER RESET" << std::endl; // <<< DEBUG
+
+    logfile->write_end(name, func);
 }
 
 // Stopping the robot
 void MainWindow::on_pushbutton_speedreset_clicked(){
-    std::cout << "SPEED RESET: "; // <<< DEBUG
-    if (ui->combobox_speedsettype->currentText() == "Axial"){
-        std::cout << "NULLS"; // <<< DEBUG
-        robotino->set_speed_cartesian(0, 0, 0);
-    }
-    else{
-        std::cout << "NULLS"; // <<< DEBUG
-        robotino->set_speed_motors(0, 0, 0);
-    }
+    std::string func = "on_pushbutton_speedreset_clicked";
+    logfile->write_begin(name, func);
+
+    if (ui->combobox_speedsettype->currentText() == "Axial") robotino->set_speed_cartesian(0, 0, 0);
+    else robotino->set_speed_motors(0, 0, 0);
+
     ui->lineedit_speedset1->setText("0");
     ui->lineedit_speedset2->setText("0");
     ui->lineedit_speedset3->setText("0");
-    std::cout << std::endl; // <<< DEBUG
+
+    logfile->write_end(name, func);
 }
 
 // Setting the speed
 void MainWindow::on_pushbutton_speedset_clicked(){
-    std::cout << "SPEED SET: "; // <<< DEBUG
+    std::string func = "on_pushbutton_speedset_clicked";
+    logfile->write_begin(name, func);
+
+    logfile->write_event(name, func, "Speed set correct", ((ui->lineedit_speedset1->text().length() > 0) && (ui->lineedit_speedset2->text().length() > 0) && (ui->lineedit_speedset3->text().length() > 0)));
     if ((ui->lineedit_speedset1->text().length() > 0) && (ui->lineedit_speedset2->text().length() > 0) && (ui->lineedit_speedset3->text().length() > 0)){
         if (ui->combobox_speedsettype->currentText() == "Axial"){
-            std::cout << "AXIAL"; // <<< DEBUG
             robotino->set_speed_cartesian(ui->lineedit_speedset1->text().toInt(), ui->lineedit_speedset2->text().toInt(), ui->lineedit_speedset3->text().toInt());
         }
         else if (ui->combobox_speedsettype->currentText() == "Local"){
-            std::cout << "LOCAL"; // <<< DEBUG
             robotino->set_speed_motors(ui->lineedit_speedset1->text().toInt(), ui->lineedit_speedset2->text().toInt(), ui->lineedit_speedset3->text().toInt());
         }
     }
-    std::cout << std::endl;
+
+    logfile->write_end(name, func);
 }
 
 // Choosing the speed set type
 void MainWindow::on_combobox_speedsettype_currentTextChanged(const QString &arg1){
-    std::cout << "SPEED TYPE CHANGED: "; // <<< DEBUG
+    std::string func = "on_combobox_speedsettype_currentTextChanged";
+    logfile->write_begin(name, func);
+
+    logfile->write_event(name, func, "Speed set correct", ((ui->lineedit_speedset1->text().length() > 0) && (ui->lineedit_speedset2->text().length() > 0) && (ui->lineedit_speedset3->text().length() > 0)));
     if ((ui->lineedit_speedset1->text().length() > 0) && (ui->lineedit_speedset2->text().length() > 0) && (ui->lineedit_speedset3->text().length() > 0)){
         if (arg1 == "Axial"){
-            std::cout << "TO AXIAL"; // <<< DEBUG
             robotino->set_speed_cartesian(ui->lineedit_speedset1->text().toInt(), ui->lineedit_speedset2->text().toInt(), ui->lineedit_speedset3->text().toInt());
             ui->NULL_label_58->setText("X:");
             ui->NULL_label_47->setText("Y:");
             ui->NULL_label_31->setText("F:");
         }
         else if (arg1 == "Local"){
-            std::cout << "TO LOCAL"; // <<< DEBUG
             robotino->set_speed_motors(ui->lineedit_speedset1->text().toInt(), ui->lineedit_speedset2->text().toInt(), ui->lineedit_speedset3->text().toInt());
             ui->NULL_label_58->setText("W1:");
             ui->NULL_label_47->setText("W2:");
             ui->NULL_label_31->setText("W3:");
         }
     }
-    std::cout << std::endl; // <<< DEBUG
+    logfile->write_end(name, func);
 }
 
 // Writing init
 void MainWindow::on_pushbutton_datawritestart_clicked(){
-    std::cout << "WRITING INIT: ";  // <<< DEBUG
+    std::string func = "on_pushbutton_datawrite_clicked";
+    logfile->write_begin(name, func);
+
+    logfile->write_event(name, func, "Data filename correct", (ui->lineedit_datafilename->text().length() > 0));
     // If the filename is not empty
     if (ui->lineedit_datafilename->text().length() > 0){
         // Creating/Opening the file to write
         data_file.open(ui->lineedit_datafilename->text().toStdString() + ".csv");
+        logfile->write_event(name, func, ui->lineedit_datafilename->text().toStdString() + ".csv", data_file.is_open());
 
         // Writing the head of the file
         data_file << "Gyro X" << separation_symbol << "Gyro Y" << separation_symbol << "Gyro Z" << separation_symbol;
@@ -506,28 +555,40 @@ void MainWindow::on_pushbutton_datawritestart_clicked(){
         // Disable start button, enable stop button
         ui->pushbutton_datawritestop->setEnabled(true);
         ui->pushbutton_datawritestart->setEnabled(false);
-
-        std::cout << "HAT READY"; // <<< DEBUG
     }
-    std::cout << std::endl; // <<< DEBUG
+
+    logfile->write_end(name, func);
 }
 
 void MainWindow::on_pushbutton_datawritestop_clicked(){
+    std::string func = "on_pushbutton_datawritestop_clicked";
+    logfile->write_begin(name, func);
+
     ui->pushbutton_datawritestart->setEnabled(true);
     ui->pushbutton_datawritestop->setEnabled(false);
     data_file.close();
-    std::cout << "WRITING STOPPED" << std::endl; // <<< DEBUG
+
+    logfile->write_event(name, func, "Data file open", data_file.is_open());
+    logfile->write_end(name, func);
 }
 
 // Scale changing
 void MainWindow::on_pushbutton_plotscaleset_clicked(){
+    std::string func = "on_pushbutton_plotscaleset_clicked";
+    logfile->write_begin(name, func);
+
     if (ui->lineedit_plotscalemax->text().toInt() > ui->lineedit_plotscalemin->text().toInt()){
         active_plot->SetValueAxisRange(ui->lineedit_plotscalemin->text().toFloat(), ui->lineedit_plotscalemax->text().toFloat());
     }
+
+    logfile->write_end(name, func);
 }
 
 // Choosing the plotting data
 void MainWindow::on_combobox_robotdataplotchoose_currentIndexChanged(int index){
+    std::string func = "on_combobox_robotdataplotchoose_currentIndexChanged";
+    logfile->write_begin(name, func);
+
     // Show active plot
     for (auto iter = plots.begin(); iter != plots.end(); iter++) (*iter)->SetActive(false);
     plots[index]->SetActive(true);
@@ -536,52 +597,92 @@ void MainWindow::on_combobox_robotdataplotchoose_currentIndexChanged(int index){
     // Setting scale
     ui->lineedit_plotscalemax->setText(QString::fromStdString(std::to_string(active_plot->GetMax())));
     ui->lineedit_plotscalemin->setText(QString::fromStdString(std::to_string(active_plot->GetMin())));
+
+    logfile->write_end(name, func);
 }
 
 void MainWindow::on_lineedit_webcamnumber_returnPressed(){
+    std::string func = "on_lineedit_webcamnumber_returnPressed";
+    logfile->write_begin(name, func);
     on_pushbutton_connect_clicked();
+    logfile->write_end(name, func);
 }
 
 void MainWindow::on_lineedit_comport_returnPressed(){
+    std::string func = "on_lineedit_comport_returnPressed";
+    logfile->write_begin(name, func);
     on_pushbutton_connect_clicked();
+    logfile->write_end(name, func);
 }
 
 void MainWindow::on_lineedit_robotinoip_returnPressed(){
+    std::string func = "on_lineedit_robotinoip_returnPressed";
+    logfile->write_begin(name, func);
     on_pushbutton_connect_clicked();
+    logfile->write_end(name, func);
 }
 
 void MainWindow::on_lineedit_speedset1_returnPressed(){
+    std::string func = "on_lineedit_speedset1_returnPressed";
+    logfile->write_begin(name, func);
     on_pushbutton_speedset_clicked();
+    logfile->write_end(name, func);
 }
 
 void MainWindow::on_lineedit_speedset2_returnPressed(){
+    std::string func = "on_lineedit_speedset2_returnPressed";
+    logfile->write_begin(name, func);
     on_pushbutton_speedset_clicked();
+    logfile->write_end(name, func);
 }
 
 void MainWindow::on_lineedit_speedset3_returnPressed(){
+    std::string func = "on_lineedit_speedset3_returnPressed";
+    logfile->write_begin(name, func);
     on_pushbutton_speedset_clicked();
+    logfile->write_end(name, func);
 }
 
 void MainWindow::on_lineedit_writingperiod_returnPressed(){
+    std::string func = "on_lineedit_writingperiod_returnPressed";
+    logfile->write_begin(name, func);
     on_pushbutton_setwritingperiod_clicked();
+    logfile->write_end(name, func);
 }
 
 void MainWindow::on_lineedit_plotscalemax_returnPressed(){
+    std::string func = "on_lineedit_plotscalemax_returnPressed";
+    logfile->write_begin(name, func);
     on_pushbutton_plotscaleset_clicked();
+    logfile->write_end(name, func);
 }
 
 void MainWindow::on_lineedit_plotscalemin_returnPressed(){
+    std::string func = "on_lineedit_plotscalemin_returnPressed";
+    logfile->write_begin(name, func);
     on_pushbutton_plotscaleset_clicked();
+    logfile->write_end(name, func);
 }
 
 void MainWindow::on_tab_change_button_clicked(){
+    std::string func = "on_tab_change_button_clicked";
+    logfile->write_begin(name, func);
+
     if (ui->tabWidget->currentIndex() == 3) ui->tabWidget->setCurrentIndex(0);
     else ui->tabWidget->setCurrentIndex(ui->tabWidget->currentIndex() + 1);
+
+    logfile->write_end(name, func);
 }
 
 void MainWindow::on_checkbox_autoscalemode_stateChanged(int arg1){
+    std::string func = "on_checkbox_autoscalemode_stateChanged";
+    logfile->write_begin(name, func);
+    logfile->write_event(name, func, "Autoscale mode", arg1);
+
     ui->lineedit_plotscalemin->setEnabled((arg1 == 2) ? true : false);
     ui->lineedit_plotscalemax->setEnabled((arg1 == 2) ? true : false);
     ui->pushbutton_plotscaleset->setEnabled((arg1 == 2) ? true : false);
     for (auto iter = plots.begin(); iter != plots.end(); iter++) (*iter)->AutoScale(arg1);
+
+    logfile->write_end(name, func);
 }

@@ -31,7 +31,10 @@ struct Log{
         }
     }
     void write_end(std::string object, std::string func){
-        if (WRITE_LOG) this->log_file << sq(object) + fg(func) + is + "End" << std::endl;
+        if (WRITE_LOG){
+            this->log_file << sq(object) + fg(func) + is + "End" << std::endl;
+            this->log_file << "`~`~`~`~`~`~`~`~`~`~`~`~`~`~`~`~`~`~`~`~" << std::endl;
+        }
     }
 
 private:

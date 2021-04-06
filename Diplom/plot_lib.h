@@ -188,10 +188,13 @@ public:
     }
 
     ~TimePlot(void){
-        delete this->qcv;
-        delete this->axis_x;
-        delete this->axis_y;
-        delete this->chart;
+        std::string func = "Destructor";
+        logfile->write_begin(name, func);
+        this->qcv->~QChartView();
+        this->axis_x->~QValueAxis();
+        this->axis_y->~QValueAxis();
+        this->chart->~QChart();
+        logfile->write_end(name, func);
     }
 
 private:
@@ -212,6 +215,10 @@ public:
 
     // Constructor
     MapPlot(QFrame * parent){
+        this->name = "MAP PLOT";
+        std::string func = "Constructor";
+        logfile->write_begin(name, func);
+
         this->chart = new QChart;
 
         // Setting up the axes
@@ -246,36 +253,54 @@ public:
         this->qcv->setFixedSize(400, 400);
         this->qcv->setRenderHint(QPainter::Antialiasing);
         this->qcv->setParent(parent);
+
+        logfile->write_end(name, func);
     }
 
     void AddPoint(float x, float y){
+        std::string func = "AddPoint";
+        logfile->write_begin(name, func);
+        logfile->write_event(name, func, "X", x);
+        logfile->write_event(name, func, "Y", y);
         this->red_dot->clear();
         this->red_dot->append(x, y);
         this->red_dot->append(x, y);
         this->series->append(x, y);
+        logfile->write_end(name, func);
     }
 
     void Clear(void){
+        std::string func = "Clear";
+        logfile->write_begin(name, func);
         this->series->clear();
         this->red_dot->clear();
+        logfile->write_end(name, func);
     }
 
     void SetSize(int32_t width, int32_t height){
+        std::string func = "SetSize";
+        logfile->write_begin(name, func);
         uint32_t wid, hei;
         if (width <= 0) wid = 100;
         else wid = width;
         if (height <= 0) hei = 100;
         else hei = height;
+        logfile->write_event(name, func, "Width", wid);
+        logfile->write_event(name, func, "Height", hei);
         this->axis_x->setMax(wid);
         this->axis_y->setMax(hei);
+        logfile->write_end(name, func);
     }
 
     ~MapPlot(void){
+        std::string func = "Destructor";
+        logfile->write_begin(name, func);
         this->qcv->~QChartView();
         this->axis_x->~QValueAxis();
         this->axis_y->~QValueAxis();
         this->chart->~QChart();
         this->series->~QLineSeries();
+        logfile->write_end(name, func);
     }
 
 private:

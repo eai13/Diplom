@@ -20,7 +20,6 @@
 
 HANDLE map_file;
 float * map_file_data;
-w
 HANDLE serial;
 DCB params = {0};
 

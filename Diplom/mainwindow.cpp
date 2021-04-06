@@ -145,6 +145,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     ui->lineedit_plotscalemax->setText(QString::fromStdString(std::to_string(active_plot->GetMax())));
     ui->lineedit_plotscalemin->setText(QString::fromStdString(std::to_string(active_plot->GetMin())));
     logfile->write_end(name, func);
+
+
+
 }
 
 // Destructor

@@ -45,11 +45,12 @@ Serial *    serial;
 // Plotting time
 double plotting_time = 0;
 
-// Current active plot
+// Plotting
 TimePlot * active_plot;
-
-// Array of plot pointers
 std::array<TimePlot *, 10> plots;
+
+// Trajectory mapping
+MapPlot * map_plot;
 
 // Plots clearing function
 void clear_plots(void){
@@ -72,6 +73,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     camera = new Camera;
     serial = new Serial;
     robotino = new Robotino;
+
+    // Map plotting
+    map_plot = new MapPlot(ui->horizontalframe_trajectory);
 
     // Gyro plot setup
     std::vector<QString> names;
@@ -145,9 +149,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     ui->lineedit_plotscalemax->setText(QString::fromStdString(std::to_string(active_plot->GetMax())));
     ui->lineedit_plotscalemin->setText(QString::fromStdString(std::to_string(active_plot->GetMin())));
     logfile->write_end(name, func);
-
-
-
 }
 
 // Destructor

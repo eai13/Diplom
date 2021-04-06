@@ -348,7 +348,7 @@
       </rect>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tab_3">
       <attribute name="title">
@@ -3147,6 +3147,51 @@
       <attribute name="title">
        <string>Map</string>
       </attribute>
+      <widget class="QFrame" name="horizontalframe_trajectory">
+       <property name="geometry">
+        <rect>
+         <x>430</x>
+         <y>40</y>
+         <width>400</width>
+         <height>400</height>
+        </rect>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_2"/>
+      </widget>
+      <widget class="QLabel" name="NULL_label_64">
+       <property name="geometry">
+        <rect>
+         <x>590</x>
+         <y>10</y>
+         <width>100</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>13</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+         <stylestrategy>PreferDefault</stylestrategy>
+        </font>
+       </property>
+       <property name="text">
+        <string>Trajectory</string>
+       </property>
+      </widget>
+      <widget class="QGroupBox" name="groupBox">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>20</y>
+         <width>391</width>
+         <height>421</height>
+        </rect>
+       </property>
+       <property name="title">
+        <string>GroupBox</string>
+       </property>
+      </widget>
      </widget>
     </widget>
    </widget>

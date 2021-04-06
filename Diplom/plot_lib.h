@@ -186,6 +186,14 @@ public:
         logfile->write_event(name, func, "Autoscale", this->auto_scale_on);
         logfile->write_end(name, func);
     }
+
+    ~TimePlot(void){
+        delete this->qcv;
+        delete this->axis_x;
+        delete this->axis_y;
+        delete this->chart;
+    }
+
 private:
     QChartView *                qcv;
     QValueAxis *                axis_x;
@@ -196,6 +204,87 @@ private:
     float                       time_increment;
     int32_t                     min, max;
     uint8_t                     auto_scale_on;
+    std::string                 name;
+};
+
+struct MapPlot{
+public:
+
+    // Constructor
+    MapPlot(QFrame * parent){
+        this->chart = new QChart;
+
+        // Setting up the axes
+        this->axis_x = new QValueAxis;
+        this->axis_x->setTickCount(6);
+        this->axis_x->setRange(0, 1000);
+        this->axis_y = new QValueAxis;
+        this->axis_y->setTickCount(6);
+        this->axis_y->setRange(0, 1000);
+        this->axis_y->setReverse();
+
+        // Binding the axes to the chart
+        this->chart->addAxis(this->axis_x, Qt::AlignTop);
+        this->chart->addAxis(this->axis_y, Qt::AlignLeft);
+        this->chart->legend()->hide();
+
+        // Adding series to the chart
+        this->series = new QLineSeries;
+        this->chart->addSeries(this->series);
+        this->series->attachAxis(this->axis_x);
+        this->series->attachAxis(this->axis_y);
+
+        this->series->setName("Map");
+
+        this->red_dot = new QLineSeries;
+        this->chart->addSeries(this->red_dot);
+        this->red_dot->attachAxis(this->axis_x);
+        this->red_dot->attachAxis(this->axis_y);
+        this->red_dot->setPen(QPen(QBrush(QColor(255, 0, 0)), 10));
+
+        this->qcv = new QChartView(this->chart);
+        this->qcv->setFixedSize(400, 400);
+        this->qcv->setRenderHint(QPainter::Antialiasing);
+        this->qcv->setParent(parent);
+    }
+
+    void AddPoint(float x, float y){
+        this->red_dot->clear();
+        this->red_dot->append(x, y);
+        this->red_dot->append(x, y);
+        this->series->append(x, y);
+    }
+
+    void Clear(void){
+        this->series->clear();
+        this->red_dot->clear();
+    }
+
+    void SetSize(int32_t width, int32_t height){
+        uint32_t wid, hei;
+        if (width <= 0) wid = 100;
+        else wid = width;
+        if (height <= 0) hei = 100;
+        else hei = height;
+        this->axis_x->setMax(wid);
+        this->axis_y->setMax(hei);
+    }
+
+    ~MapPlot(void){
+        this->qcv->~QChartView();
+        this->axis_x->~QValueAxis();
+        this->axis_y->~QValueAxis();
+        this->chart->~QChart();
+        this->series->~QLineSeries();
+    }
+
+private:
+    QChartView *                qcv;
+    QValueAxis *                axis_x;
+    QValueAxis *                axis_y;
+    QChart *                    chart;
+    QLineSeries *               series;
+    QLineSeries *               red_dot;
     std::string                 name;
 };
 

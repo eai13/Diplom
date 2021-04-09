@@ -250,7 +250,7 @@ public:
         this->red_dot->setPen(QPen(QBrush(QColor(255, 0, 0)), 10));
 
         this->qcv = new QChartView(this->chart);
-        this->qcv->setFixedSize(400, 400);
+        this->qcv->setFixedSize(350, 300);
         this->qcv->setRenderHint(QPainter::Antialiasing);
         this->qcv->setParent(parent);
 

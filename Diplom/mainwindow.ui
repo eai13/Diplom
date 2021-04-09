@@ -354,626 +354,6 @@
       <attribute name="title">
        <string>Main Data</string>
       </attribute>
-      <widget class="QTabWidget" name="tabwidget_controlmode">
-       <property name="geometry">
-        <rect>
-         <x>570</x>
-         <y>10</y>
-         <width>261</width>
-         <height>221</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>10</pointsize>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="currentIndex">
-        <number>0</number>
-       </property>
-       <widget class="QWidget" name="tab">
-        <attribute name="title">
-         <string>Manual</string>
-        </attribute>
-        <widget class="QPushButton" name="pushbutton_speedset">
-         <property name="geometry">
-          <rect>
-           <x>50</x>
-           <y>150</y>
-           <width>70</width>
-           <height>23</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>8</pointsize>
-           <weight>50</weight>
-           <bold>false</bold>
-          </font>
-         </property>
-         <property name="text">
-          <string>Set</string>
-         </property>
-        </widget>
-        <widget class="QLineEdit" name="lineedit_speedset3">
-         <property name="geometry">
-          <rect>
-           <x>80</x>
-           <y>110</y>
-           <width>130</width>
-           <height>20</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <family>OCR A Extended</family>
-           <pointsize>10</pointsize>
-           <weight>50</weight>
-           <bold>false</bold>
-          </font>
-         </property>
-         <property name="text">
-          <string>0</string>
-         </property>
-         <property name="readOnly">
-          <bool>false</bool>
-         </property>
-        </widget>
-        <widget class="QLabel" name="NULL_label_58">
-         <property name="geometry">
-          <rect>
-           <x>50</x>
-           <y>50</y>
-           <width>30</width>
-           <height>20</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>13</pointsize>
-           <weight>50</weight>
-           <bold>false</bold>
-          </font>
-         </property>
-         <property name="text">
-          <string>X:</string>
-         </property>
-        </widget>
-        <widget class="QLineEdit" name="lineedit_speedset1">
-         <property name="geometry">
-          <rect>
-           <x>80</x>
-           <y>50</y>
-           <width>130</width>
-           <height>20</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <family>OCR A Extended</family>
-           <pointsize>10</pointsize>
-           <weight>50</weight>
-           <bold>false</bold>
-          </font>
-         </property>
-         <property name="text">
-          <string>0</string>
-         </property>
-         <property name="readOnly">
-          <bool>false</bool>
-         </property>
-        </widget>
-        <widget class="QLineEdit" name="lineedit_speedset2">
-         <property name="geometry">
-          <rect>
-           <x>80</x>
-           <y>80</y>
-           <width>130</width>
-           <height>20</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <family>OCR A Extended</family>
-           <pointsize>10</pointsize>
-           <weight>50</weight>
-           <bold>false</bold>
-          </font>
-         </property>
-         <property name="text">
-          <string>0</string>
-         </property>
-         <property name="readOnly">
-          <bool>false</bool>
-         </property>
-        </widget>
-        <widget class="QPushButton" name="pushbutton_speedreset">
-         <property name="geometry">
-          <rect>
-           <x>140</x>
-           <y>150</y>
-           <width>70</width>
-           <height>23</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>8</pointsize>
-           <weight>50</weight>
-           <bold>false</bold>
-          </font>
-         </property>
-         <property name="text">
-          <string>Reset</string>
-         </property>
-         <property name="shortcut">
-          <string>Alt+S</string>
-         </property>
-        </widget>
-        <widget class="QComboBox" name="combobox_speedsettype">
-         <property name="geometry">
-          <rect>
-           <x>140</x>
-           <y>10</y>
-           <width>70</width>
-           <height>22</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>10</pointsize>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
-         <item>
-          <property name="text">
-           <string>Axial</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Local</string>
-          </property>
-         </item>
-        </widget>
-        <widget class="QLabel" name="NULL_label_31">
-         <property name="geometry">
-          <rect>
-           <x>50</x>
-           <y>110</y>
-           <width>30</width>
-           <height>20</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <family>MS Shell Dlg 2</family>
-           <pointsize>13</pointsize>
-           <weight>50</weight>
-           <bold>false</bold>
-          </font>
-         </property>
-         <property name="text">
-          <string>F:</string>
-         </property>
-        </widget>
-        <widget class="QLabel" name="NULL_label_47">
-         <property name="geometry">
-          <rect>
-           <x>50</x>
-           <y>80</y>
-           <width>30</width>
-           <height>20</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>13</pointsize>
-           <weight>50</weight>
-           <bold>false</bold>
-          </font>
-         </property>
-         <property name="text">
-          <string>Y:</string>
-         </property>
-        </widget>
-        <widget class="QLabel" name="NULL_label_60">
-         <property name="geometry">
-          <rect>
-           <x>50</x>
-           <y>10</y>
-           <width>80</width>
-           <height>20</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>10</pointsize>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="text">
-          <string>Speed Type:</string>
-         </property>
-        </widget>
-       </widget>
-       <widget class="QWidget" name="tab_2">
-        <attribute name="title">
-         <string>PID</string>
-        </attribute>
-        <widget class="QLineEdit" name="lineedit_Dvalue">
-         <property name="geometry">
-          <rect>
-           <x>40</x>
-           <y>110</y>
-           <width>50</width>
-           <height>20</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <family>OCR A Extended</family>
-           <pointsize>10</pointsize>
-           <weight>50</weight>
-           <bold>false</bold>
-          </font>
-         </property>
-         <property name="text">
-          <string>0</string>
-         </property>
-         <property name="readOnly">
-          <bool>true</bool>
-         </property>
-        </widget>
-        <widget class="QLineEdit" name="lineedit_Pvalue">
-         <property name="geometry">
-          <rect>
-           <x>40</x>
-           <y>50</y>
-           <width>50</width>
-           <height>20</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <family>OCR A Extended</family>
-           <pointsize>10</pointsize>
-           <weight>50</weight>
-           <bold>false</bold>
-          </font>
-         </property>
-         <property name="text">
-          <string>0</string>
-         </property>
-         <property name="readOnly">
-          <bool>true</bool>
-         </property>
-        </widget>
-        <widget class="QLineEdit" name="lineedit_Ivalue">
-         <property name="geometry">
-          <rect>
-           <x>40</x>
-           <y>80</y>
-           <width>50</width>
-           <height>20</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <family>OCR A Extended</family>
-           <pointsize>10</pointsize>
-           <weight>50</weight>
-           <bold>false</bold>
-          </font>
-         </property>
-         <property name="text">
-          <string>0</string>
-         </property>
-         <property name="readOnly">
-          <bool>true</bool>
-         </property>
-        </widget>
-        <widget class="QLabel" name="NULL_label_24">
-         <property name="geometry">
-          <rect>
-           <x>20</x>
-           <y>110</y>
-           <width>20</width>
-           <height>20</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <family>MS Shell Dlg 2</family>
-           <pointsize>13</pointsize>
-           <weight>50</weight>
-           <bold>false</bold>
-          </font>
-         </property>
-         <property name="text">
-          <string>D:</string>
-         </property>
-        </widget>
-        <widget class="QLabel" name="NULL_label_32">
-         <property name="geometry">
-          <rect>
-           <x>20</x>
-           <y>50</y>
-           <width>20</width>
-           <height>20</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>13</pointsize>
-           <weight>50</weight>
-           <bold>false</bold>
-          </font>
-         </property>
-         <property name="text">
-          <string>P:</string>
-         </property>
-        </widget>
-        <widget class="QLabel" name="NULL_label_61">
-         <property name="geometry">
-          <rect>
-           <x>20</x>
-           <y>80</y>
-           <width>20</width>
-           <height>20</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>13</pointsize>
-           <weight>50</weight>
-           <bold>false</bold>
-          </font>
-         </property>
-         <property name="text">
-          <string>I:</string>
-         </property>
-        </widget>
-        <widget class="QComboBox" name="combobox_PIDchoose">
-         <property name="geometry">
-          <rect>
-           <x>100</x>
-           <y>10</y>
-           <width>60</width>
-           <height>22</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>10</pointsize>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="currentIndex">
-          <number>3</number>
-         </property>
-         <item>
-          <property name="text">
-           <string>P</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>PI</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>PD</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>PID</string>
-          </property>
-         </item>
-        </widget>
-        <widget class="QGroupBox" name="group_PIDcontrolsaturation">
-         <property name="geometry">
-          <rect>
-           <x>100</x>
-           <y>40</y>
-           <width>141</width>
-           <height>91</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>10</pointsize>
-           <weight>50</weight>
-           <bold>false</bold>
-          </font>
-         </property>
-         <property name="title">
-          <string>Saturation:</string>
-         </property>
-         <widget class="QLineEdit" name="lineedit_PIDcontrolsaturationmax">
-          <property name="geometry">
-           <rect>
-            <x>40</x>
-            <y>60</y>
-            <width>70</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="font">
-           <font>
-            <family>OCR A Extended</family>
-            <pointsize>10</pointsize>
-            <weight>50</weight>
-            <bold>false</bold>
-           </font>
-          </property>
-          <property name="text">
-           <string>0</string>
-          </property>
-          <property name="readOnly">
-           <bool>false</bool>
-          </property>
-         </widget>
-         <widget class="QLineEdit" name="lineedit_PIDcontrolsaturationmin">
-          <property name="geometry">
-           <rect>
-            <x>40</x>
-            <y>30</y>
-            <width>70</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="font">
-           <font>
-            <family>OCR A Extended</family>
-            <pointsize>10</pointsize>
-            <weight>50</weight>
-            <bold>false</bold>
-           </font>
-          </property>
-          <property name="text">
-           <string>0</string>
-          </property>
-          <property name="readOnly">
-           <bool>false</bool>
-          </property>
-         </widget>
-         <widget class="QLabel" name="NULL_label_62">
-          <property name="geometry">
-           <rect>
-            <x>10</x>
-            <y>60</y>
-            <width>30</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="font">
-           <font>
-            <pointsize>10</pointsize>
-            <weight>50</weight>
-            <bold>false</bold>
-           </font>
-          </property>
-          <property name="text">
-           <string>Min:</string>
-          </property>
-         </widget>
-         <widget class="QLabel" name="NULL_label_63">
-          <property name="geometry">
-           <rect>
-            <x>10</x>
-            <y>30</y>
-            <width>30</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="font">
-           <font>
-            <pointsize>10</pointsize>
-            <weight>50</weight>
-            <bold>false</bold>
-           </font>
-          </property>
-          <property name="text">
-           <string>Max:</string>
-          </property>
-         </widget>
-         <widget class="QPushButton" name="pushbutton_speedset_3">
-          <property name="geometry">
-           <rect>
-            <x>20</x>
-            <y>160</y>
-            <width>70</width>
-            <height>23</height>
-           </rect>
-          </property>
-          <property name="font">
-           <font>
-            <pointsize>8</pointsize>
-            <weight>50</weight>
-            <bold>false</bold>
-           </font>
-          </property>
-          <property name="text">
-           <string>Set</string>
-          </property>
-         </widget>
-         <widget class="QPushButton" name="pushbutton_speedreset_3">
-          <property name="geometry">
-           <rect>
-            <x>100</x>
-            <y>160</y>
-            <width>70</width>
-            <height>23</height>
-           </rect>
-          </property>
-          <property name="font">
-           <font>
-            <pointsize>8</pointsize>
-            <weight>50</weight>
-            <bold>false</bold>
-           </font>
-          </property>
-          <property name="text">
-           <string>Reset</string>
-          </property>
-         </widget>
-         <widget class="QCheckBox" name="checkbox_saturationmax">
-          <property name="geometry">
-           <rect>
-            <x>117</x>
-            <y>30</y>
-            <width>16</width>
-            <height>19</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-         <widget class="QCheckBox" name="checkbox_saturationmin">
-          <property name="geometry">
-           <rect>
-            <x>117</x>
-            <y>60</y>
-            <width>16</width>
-            <height>19</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </widget>
-        <widget class="QPushButton" name="pushbutton_plotscaleset_2">
-         <property name="geometry">
-          <rect>
-           <x>100</x>
-           <y>150</y>
-           <width>60</width>
-           <height>23</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>8</pointsize>
-           <weight>50</weight>
-           <bold>false</bold>
-          </font>
-         </property>
-         <property name="text">
-          <string>Set</string>
-         </property>
-        </widget>
-       </widget>
-      </widget>
       <widget class="QGroupBox" name="group_datavisualization">
        <property name="geometry">
         <rect>
@@ -3137,7 +2517,6 @@
        </property>
       </widget>
       <zorder>tab_change_button</zorder>
-      <zorder>tabwidget_controlmode</zorder>
       <zorder>group_datavisualization</zorder>
       <zorder>horizontalframe_robotdataplot</zorder>
       <zorder>tabWidget</zorder>
@@ -3150,47 +2529,1104 @@
       <widget class="QFrame" name="horizontalframe_trajectory">
        <property name="geometry">
         <rect>
-         <x>430</x>
-         <y>40</y>
-         <width>400</width>
-         <height>400</height>
+         <x>480</x>
+         <y>20</y>
+         <width>350</width>
+         <height>300</height>
         </rect>
        </property>
        <layout class="QHBoxLayout" name="horizontalLayout_2"/>
       </widget>
-      <widget class="QLabel" name="NULL_label_64">
+      <widget class="QLabel" name="label_controlloopimage">
        <property name="geometry">
         <rect>
-         <x>590</x>
-         <y>10</y>
-         <width>100</width>
-         <height>20</height>
+         <x>130</x>
+         <y>350</y>
+         <width>615</width>
+         <height>270</height>
         </rect>
        </property>
-       <property name="font">
-        <font>
-         <pointsize>13</pointsize>
-         <weight>75</weight>
-         <bold>true</bold>
-         <stylestrategy>PreferDefault</stylestrategy>
-        </font>
-       </property>
        <property name="text">
-        <string>Trajectory</string>
+        <string/>
        </property>
       </widget>
-      <widget class="QGroupBox" name="groupBox">
+      <widget class="QLCDNumber" name="lcdnumber_Pcoef">
+       <property name="geometry">
+        <rect>
+         <x>406</x>
+         <y>360</y>
+         <width>84</width>
+         <height>30</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLCDNumber" name="lcdnumber_Dcoef">
+       <property name="geometry">
+        <rect>
+         <x>406</x>
+         <y>444</y>
+         <width>84</width>
+         <height>30</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLCDNumber" name="lcdnumber_Icoef">
+       <property name="geometry">
+        <rect>
+         <x>406</x>
+         <y>528</y>
+         <width>84</width>
+         <height>30</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLCDNumber" name="lcdnumber_feedback">
+       <property name="geometry">
+        <rect>
+         <x>406</x>
+         <y>579</y>
+         <width>84</width>
+         <height>30</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLCDNumber" name="lcdnumber_setpoint">
+       <property name="geometry">
+        <rect>
+         <x>137</x>
+         <y>444</y>
+         <width>84</width>
+         <height>30</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLCDNumber" name="lcdnumber_output">
+       <property name="geometry">
+        <rect>
+         <x>583</x>
+         <y>444</y>
+         <width>85</width>
+         <height>30</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QTabWidget" name="tabwidget_controlmode">
        <property name="geometry">
         <rect>
          <x>20</x>
          <y>20</y>
-         <width>391</width>
-         <height>421</height>
+         <width>441</width>
+         <height>211</height>
         </rect>
        </property>
-       <property name="title">
-        <string>GroupBox</string>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
        </property>
+       <property name="currentIndex">
+        <number>1</number>
+       </property>
+       <widget class="QWidget" name="tab">
+        <attribute name="title">
+         <string>Manual</string>
+        </attribute>
+        <widget class="QPushButton" name="pushbutton_speedset">
+         <property name="geometry">
+          <rect>
+           <x>50</x>
+           <y>150</y>
+           <width>70</width>
+           <height>23</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>8</pointsize>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Set</string>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="lineedit_speedset3">
+         <property name="geometry">
+          <rect>
+           <x>80</x>
+           <y>110</y>
+           <width>130</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>OCR A Extended</family>
+           <pointsize>10</pointsize>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>0</string>
+         </property>
+         <property name="readOnly">
+          <bool>false</bool>
+         </property>
+        </widget>
+        <widget class="QLabel" name="NULL_label_58">
+         <property name="geometry">
+          <rect>
+           <x>50</x>
+           <y>50</y>
+           <width>30</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>13</pointsize>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>X:</string>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="lineedit_speedset1">
+         <property name="geometry">
+          <rect>
+           <x>80</x>
+           <y>50</y>
+           <width>130</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>OCR A Extended</family>
+           <pointsize>10</pointsize>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>0</string>
+         </property>
+         <property name="readOnly">
+          <bool>false</bool>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="lineedit_speedset2">
+         <property name="geometry">
+          <rect>
+           <x>80</x>
+           <y>80</y>
+           <width>130</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>OCR A Extended</family>
+           <pointsize>10</pointsize>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>0</string>
+         </property>
+         <property name="readOnly">
+          <bool>false</bool>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="pushbutton_speedreset">
+         <property name="geometry">
+          <rect>
+           <x>140</x>
+           <y>150</y>
+           <width>70</width>
+           <height>23</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>8</pointsize>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Reset</string>
+         </property>
+         <property name="shortcut">
+          <string>Alt+S</string>
+         </property>
+        </widget>
+        <widget class="QComboBox" name="combobox_speedsettype">
+         <property name="geometry">
+          <rect>
+           <x>140</x>
+           <y>10</y>
+           <width>70</width>
+           <height>22</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <item>
+          <property name="text">
+           <string>Axial</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Local</string>
+          </property>
+         </item>
+        </widget>
+        <widget class="QLabel" name="NULL_label_31">
+         <property name="geometry">
+          <rect>
+           <x>50</x>
+           <y>110</y>
+           <width>30</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>MS Shell Dlg 2</family>
+           <pointsize>13</pointsize>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>F:</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="NULL_label_47">
+         <property name="geometry">
+          <rect>
+           <x>50</x>
+           <y>80</y>
+           <width>30</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>13</pointsize>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Y:</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="NULL_label_60">
+         <property name="geometry">
+          <rect>
+           <x>50</x>
+           <y>10</y>
+           <width>80</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Speed Type:</string>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QWidget" name="tab_2">
+        <attribute name="title">
+         <string>PID</string>
+        </attribute>
+        <widget class="QLineEdit" name="lineedit_Dvalue">
+         <property name="geometry">
+          <rect>
+           <x>40</x>
+           <y>110</y>
+           <width>50</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>OCR A Extended</family>
+           <pointsize>10</pointsize>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>0</string>
+         </property>
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="lineedit_Pvalue">
+         <property name="geometry">
+          <rect>
+           <x>40</x>
+           <y>50</y>
+           <width>50</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>OCR A Extended</family>
+           <pointsize>10</pointsize>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>0</string>
+         </property>
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="lineedit_Ivalue">
+         <property name="geometry">
+          <rect>
+           <x>40</x>
+           <y>80</y>
+           <width>50</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>OCR A Extended</family>
+           <pointsize>10</pointsize>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>0</string>
+         </property>
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+        </widget>
+        <widget class="QLabel" name="NULL_label_24">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>110</y>
+           <width>20</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>MS Shell Dlg 2</family>
+           <pointsize>13</pointsize>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>D:</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="NULL_label_32">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>50</y>
+           <width>20</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>13</pointsize>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>P:</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="NULL_label_61">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>80</y>
+           <width>20</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>13</pointsize>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>I:</string>
+         </property>
+        </widget>
+        <widget class="QComboBox" name="combobox_PIDchoose">
+         <property name="geometry">
+          <rect>
+           <x>100</x>
+           <y>10</y>
+           <width>60</width>
+           <height>22</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="currentIndex">
+          <number>3</number>
+         </property>
+         <item>
+          <property name="text">
+           <string>P</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>PI</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>PD</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>PID</string>
+          </property>
+         </item>
+        </widget>
+        <widget class="QGroupBox" name="group_PIDcontrolsaturation">
+         <property name="geometry">
+          <rect>
+           <x>100</x>
+           <y>40</y>
+           <width>141</width>
+           <height>91</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="title">
+          <string>Saturation:</string>
+         </property>
+         <widget class="QLineEdit" name="lineedit_PIDcontrolsaturationmax">
+          <property name="geometry">
+           <rect>
+            <x>40</x>
+            <y>60</y>
+            <width>70</width>
+            <height>20</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>OCR A Extended</family>
+            <pointsize>10</pointsize>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>0</string>
+          </property>
+          <property name="readOnly">
+           <bool>false</bool>
+          </property>
+         </widget>
+         <widget class="QLineEdit" name="lineedit_PIDcontrolsaturationmin">
+          <property name="geometry">
+           <rect>
+            <x>40</x>
+            <y>30</y>
+            <width>70</width>
+            <height>20</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>OCR A Extended</family>
+            <pointsize>10</pointsize>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>0</string>
+          </property>
+          <property name="readOnly">
+           <bool>false</bool>
+          </property>
+         </widget>
+         <widget class="QLabel" name="NULL_label_62">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>60</y>
+            <width>30</width>
+            <height>20</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Min:</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="NULL_label_63">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>30</y>
+            <width>30</width>
+            <height>20</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Max:</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="pushbutton_speedset_3">
+          <property name="geometry">
+           <rect>
+            <x>20</x>
+            <y>160</y>
+            <width>70</width>
+            <height>23</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>8</pointsize>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Set</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="pushbutton_speedreset_3">
+          <property name="geometry">
+           <rect>
+            <x>100</x>
+            <y>160</y>
+            <width>70</width>
+            <height>23</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>8</pointsize>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Reset</string>
+          </property>
+         </widget>
+         <widget class="QCheckBox" name="checkbox_saturationmin">
+          <property name="geometry">
+           <rect>
+            <x>117</x>
+            <y>60</y>
+            <width>16</width>
+            <height>19</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </widget>
+        <widget class="QPushButton" name="pushbutton_plotscaleset_2">
+         <property name="geometry">
+          <rect>
+           <x>100</x>
+           <y>150</y>
+           <width>60</width>
+           <height>23</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>8</pointsize>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Set</string>
+         </property>
+        </widget>
+        <widget class="QGroupBox" name="group_PIDtrajectorybuilding">
+         <property name="geometry">
+          <rect>
+           <x>270</x>
+           <y>10</y>
+           <width>160</width>
+           <height>161</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="title">
+          <string>Trajectory Building:</string>
+         </property>
+         <widget class="QPushButton" name="pushbutton_speedset_4">
+          <property name="geometry">
+           <rect>
+            <x>20</x>
+            <y>160</y>
+            <width>70</width>
+            <height>23</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>8</pointsize>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Set</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="pushbutton_speedreset_4">
+          <property name="geometry">
+           <rect>
+            <x>100</x>
+            <y>160</y>
+            <width>70</width>
+            <height>23</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>8</pointsize>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Reset</string>
+          </property>
+         </widget>
+         <widget class="QLineEdit" name="lineedit_trajectoryx">
+          <property name="geometry">
+           <rect>
+            <x>30</x>
+            <y>40</y>
+            <width>60</width>
+            <height>20</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>OCR A Extended</family>
+            <pointsize>10</pointsize>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>0</string>
+          </property>
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
+         </widget>
+         <widget class="QLabel" name="NULL_label_64">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>40</y>
+            <width>20</width>
+            <height>20</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>MS Shell Dlg 2</family>
+            <pointsize>13</pointsize>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>X:</string>
+          </property>
+         </widget>
+         <widget class="QLineEdit" name="lineedit_trajectoryy">
+          <property name="geometry">
+           <rect>
+            <x>30</x>
+            <y>80</y>
+            <width>60</width>
+            <height>20</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>OCR A Extended</family>
+            <pointsize>10</pointsize>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>0</string>
+          </property>
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
+         </widget>
+         <widget class="QLabel" name="NULL_label_65">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>80</y>
+            <width>20</width>
+            <height>20</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>MS Shell Dlg 2</family>
+            <pointsize>13</pointsize>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Y:</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="pushbutton_PIDtrajectoryadd">
+          <property name="geometry">
+           <rect>
+            <x>100</x>
+            <y>30</y>
+            <width>50</width>
+            <height>23</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>8</pointsize>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Add</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="pushbutton_PIDtrajectorydelete">
+          <property name="geometry">
+           <rect>
+            <x>100</x>
+            <y>60</y>
+            <width>50</width>
+            <height>23</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>8</pointsize>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Delete</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="pushbutton_PIDtrajectoryclear">
+          <property name="geometry">
+           <rect>
+            <x>100</x>
+            <y>90</y>
+            <width>50</width>
+            <height>23</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>8</pointsize>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Clear</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="pushbutton_PIDtrajectorystart">
+          <property name="geometry">
+           <rect>
+            <x>20</x>
+            <y>130</y>
+            <width>50</width>
+            <height>23</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>8</pointsize>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Start</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="pushbutton_PIDtrajectorystop">
+          <property name="geometry">
+           <rect>
+            <x>90</x>
+            <y>130</y>
+            <width>50</width>
+            <height>23</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>8</pointsize>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Stop</string>
+          </property>
+         </widget>
+        </widget>
+       </widget>
+      </widget>
+      <widget class="QGroupBox" name="groupbox_controlmodecurrentplot">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>240</y>
+         <width>440</width>
+         <height>80</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="title">
+        <string>Current Plot</string>
+       </property>
+       <widget class="QComboBox" name="combobo_controlmodechooseplot">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>30</y>
+          <width>140</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <item>
+         <property name="text">
+          <string>Real Trajectory</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Set Trajectory</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>P value</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>I value</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>D value</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Setpoint/Output</string>
+         </property>
+        </item>
+       </widget>
+       <widget class="QLabel" name="NULL_label_66">
+        <property name="geometry">
+         <rect>
+          <x>190</x>
+          <y>20</y>
+          <width>30</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Max:</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="lineedit_controlmodeplotmin">
+        <property name="geometry">
+         <rect>
+          <x>330</x>
+          <y>20</y>
+          <width>70</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>OCR A Extended</family>
+          <pointsize>10</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>0</string>
+        </property>
+        <property name="readOnly">
+         <bool>false</bool>
+        </property>
+       </widget>
+       <widget class="QLabel" name="NULL_label_67">
+        <property name="geometry">
+         <rect>
+          <x>300</x>
+          <y>20</y>
+          <width>30</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Min:</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="lineedit_controlmodeplotmax">
+        <property name="geometry">
+         <rect>
+          <x>220</x>
+          <y>20</y>
+          <width>70</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>OCR A Extended</family>
+          <pointsize>10</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>0</string>
+        </property>
+        <property name="readOnly">
+         <bool>false</bool>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="checkbox_controlmodeplotautoscale">
+        <property name="geometry">
+         <rect>
+          <x>270</x>
+          <y>50</y>
+          <width>90</width>
+          <height>19</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Autoscale</string>
+        </property>
+       </widget>
       </widget>
      </widget>
     </widget>

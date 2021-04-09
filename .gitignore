@@ -8,3 +8,5 @@ simulink_test_map
 Release
 nogit*
 log
+*.bmp
+*.grs

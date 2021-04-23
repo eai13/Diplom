@@ -318,7 +318,7 @@
    </widget>
    <widget class="QGroupBox" name="groupbox_robotdata">
     <property name="enabled">
-     <bool>false</bool>
+     <bool>true</bool>
     </property>
     <property name="geometry">
      <rect>
@@ -339,6 +339,9 @@
      <string>Robot</string>
     </property>
     <widget class="QTabWidget" name="tabwidget_maindata">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>19</x>
@@ -2540,7 +2543,7 @@
       <widget class="QLabel" name="label_controlloopimage">
        <property name="geometry">
         <rect>
-         <x>130</x>
+         <x>204</x>
          <y>350</y>
          <width>615</width>
          <height>270</height>
@@ -2553,7 +2556,7 @@
       <widget class="QLCDNumber" name="lcdnumber_Pcoef">
        <property name="geometry">
         <rect>
-         <x>406</x>
+         <x>480</x>
          <y>360</y>
          <width>84</width>
          <height>30</height>
@@ -2563,7 +2566,7 @@
       <widget class="QLCDNumber" name="lcdnumber_Dcoef">
        <property name="geometry">
         <rect>
-         <x>406</x>
+         <x>480</x>
          <y>444</y>
          <width>84</width>
          <height>30</height>
@@ -2573,7 +2576,7 @@
       <widget class="QLCDNumber" name="lcdnumber_Icoef">
        <property name="geometry">
         <rect>
-         <x>406</x>
+         <x>480</x>
          <y>528</y>
          <width>84</width>
          <height>30</height>
@@ -2583,7 +2586,7 @@
       <widget class="QLCDNumber" name="lcdnumber_feedback">
        <property name="geometry">
         <rect>
-         <x>406</x>
+         <x>480</x>
          <y>579</y>
          <width>84</width>
          <height>30</height>
@@ -2593,7 +2596,7 @@
       <widget class="QLCDNumber" name="lcdnumber_setpoint">
        <property name="geometry">
         <rect>
-         <x>137</x>
+         <x>211</x>
          <y>444</y>
          <width>84</width>
          <height>30</height>
@@ -2603,7 +2606,7 @@
       <widget class="QLCDNumber" name="lcdnumber_output">
        <property name="geometry">
         <rect>
-         <x>583</x>
+         <x>657</x>
          <y>444</y>
          <width>85</width>
          <height>30</height>
@@ -2636,7 +2639,7 @@
         <widget class="QPushButton" name="pushbutton_speedset">
          <property name="geometry">
           <rect>
-           <x>50</x>
+           <x>150</x>
            <y>150</y>
            <width>70</width>
            <height>23</height>
@@ -2656,7 +2659,7 @@
         <widget class="QLineEdit" name="lineedit_speedset3">
          <property name="geometry">
           <rect>
-           <x>80</x>
+           <x>180</x>
            <y>110</y>
            <width>130</width>
            <height>20</height>
@@ -2680,7 +2683,7 @@
         <widget class="QLabel" name="NULL_label_58">
          <property name="geometry">
           <rect>
-           <x>50</x>
+           <x>150</x>
            <y>50</y>
            <width>30</width>
            <height>20</height>
@@ -2700,7 +2703,7 @@
         <widget class="QLineEdit" name="lineedit_speedset1">
          <property name="geometry">
           <rect>
-           <x>80</x>
+           <x>180</x>
            <y>50</y>
            <width>130</width>
            <height>20</height>
@@ -2724,7 +2727,7 @@
         <widget class="QLineEdit" name="lineedit_speedset2">
          <property name="geometry">
           <rect>
-           <x>80</x>
+           <x>180</x>
            <y>80</y>
            <width>130</width>
            <height>20</height>
@@ -2748,7 +2751,7 @@
         <widget class="QPushButton" name="pushbutton_speedreset">
          <property name="geometry">
           <rect>
-           <x>140</x>
+           <x>240</x>
            <y>150</y>
            <width>70</width>
            <height>23</height>
@@ -2771,7 +2774,7 @@
         <widget class="QComboBox" name="combobox_speedsettype">
          <property name="geometry">
           <rect>
-           <x>140</x>
+           <x>240</x>
            <y>10</y>
            <width>70</width>
            <height>22</height>
@@ -2798,7 +2801,7 @@
         <widget class="QLabel" name="NULL_label_31">
          <property name="geometry">
           <rect>
-           <x>50</x>
+           <x>150</x>
            <y>110</y>
            <width>30</width>
            <height>20</height>
@@ -2819,7 +2822,7 @@
         <widget class="QLabel" name="NULL_label_47">
          <property name="geometry">
           <rect>
-           <x>50</x>
+           <x>150</x>
            <y>80</y>
            <width>30</width>
            <height>20</height>
@@ -2839,7 +2842,7 @@
         <widget class="QLabel" name="NULL_label_60">
          <property name="geometry">
           <rect>
-           <x>50</x>
+           <x>150</x>
            <y>10</y>
            <width>80</width>
            <height>20</height>
@@ -2865,7 +2868,7 @@
          <property name="geometry">
           <rect>
            <x>40</x>
-           <y>110</y>
+           <y>90</y>
            <width>50</width>
            <height>20</height>
           </rect>
@@ -2882,14 +2885,14 @@
           <string>0</string>
          </property>
          <property name="readOnly">
-          <bool>true</bool>
+          <bool>false</bool>
          </property>
         </widget>
         <widget class="QLineEdit" name="lineedit_Pvalue">
          <property name="geometry">
           <rect>
            <x>40</x>
-           <y>50</y>
+           <y>30</y>
            <width>50</width>
            <height>20</height>
           </rect>
@@ -2906,14 +2909,14 @@
           <string>0</string>
          </property>
          <property name="readOnly">
-          <bool>true</bool>
+          <bool>false</bool>
          </property>
         </widget>
         <widget class="QLineEdit" name="lineedit_Ivalue">
          <property name="geometry">
           <rect>
            <x>40</x>
-           <y>80</y>
+           <y>60</y>
            <width>50</width>
            <height>20</height>
           </rect>
@@ -2930,14 +2933,14 @@
           <string>0</string>
          </property>
          <property name="readOnly">
-          <bool>true</bool>
+          <bool>false</bool>
          </property>
         </widget>
         <widget class="QLabel" name="NULL_label_24">
          <property name="geometry">
           <rect>
            <x>20</x>
-           <y>110</y>
+           <y>90</y>
            <width>20</width>
            <height>20</height>
           </rect>
@@ -2958,7 +2961,7 @@
          <property name="geometry">
           <rect>
            <x>20</x>
-           <y>50</y>
+           <y>30</y>
            <width>20</width>
            <height>20</height>
           </rect>
@@ -2978,7 +2981,7 @@
          <property name="geometry">
           <rect>
            <x>20</x>
-           <y>80</y>
+           <y>60</y>
            <width>20</width>
            <height>20</height>
           </rect>
@@ -2994,51 +2997,11 @@
           <string>I:</string>
          </property>
         </widget>
-        <widget class="QComboBox" name="combobox_PIDchoose">
-         <property name="geometry">
-          <rect>
-           <x>100</x>
-           <y>10</y>
-           <width>60</width>
-           <height>22</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>10</pointsize>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="currentIndex">
-          <number>3</number>
-         </property>
-         <item>
-          <property name="text">
-           <string>P</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>PI</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>PD</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>PID</string>
-          </property>
-         </item>
-        </widget>
         <widget class="QGroupBox" name="group_PIDcontrolsaturation">
          <property name="geometry">
           <rect>
            <x>100</x>
-           <y>40</y>
+           <y>20</y>
            <width>141</width>
            <height>91</height>
           </rect>
@@ -3053,7 +3016,7 @@
          <property name="title">
           <string>Saturation:</string>
          </property>
-         <widget class="QLineEdit" name="lineedit_PIDcontrolsaturationmax">
+         <widget class="QLineEdit" name="lineedit_PIDcontrolsaturationmin">
           <property name="geometry">
            <rect>
             <x>40</x>
@@ -3077,7 +3040,7 @@
            <bool>false</bool>
           </property>
          </widget>
-         <widget class="QLineEdit" name="lineedit_PIDcontrolsaturationmin">
+         <widget class="QLineEdit" name="lineedit_PIDcontrolsaturationmax">
           <property name="geometry">
            <rect>
             <x>40</x>
@@ -3181,7 +3144,7 @@
            <string>Reset</string>
           </property>
          </widget>
-         <widget class="QCheckBox" name="checkbox_saturationmin">
+         <widget class="QCheckBox" name="checkbox_saturationenable">
           <property name="geometry">
            <rect>
             <x>117</x>
@@ -3195,11 +3158,11 @@
           </property>
          </widget>
         </widget>
-        <widget class="QPushButton" name="pushbutton_plotscaleset_2">
+        <widget class="QPushButton" name="pushbutton_PIDcoefsset">
          <property name="geometry">
           <rect>
            <x>100</x>
-           <y>150</y>
+           <y>130</y>
            <width>60</width>
            <height>23</height>
           </rect>
@@ -3295,7 +3258,7 @@
            <string>0</string>
           </property>
           <property name="readOnly">
-           <bool>true</bool>
+           <bool>false</bool>
           </property>
          </widget>
          <widget class="QLabel" name="NULL_label_64">
@@ -3340,7 +3303,7 @@
            <string>0</string>
           </property>
           <property name="readOnly">
-           <bool>true</bool>
+           <bool>false</bool>
           </property>
          </widget>
          <widget class="QLabel" name="NULL_label_65">
@@ -3445,6 +3408,9 @@
           </property>
          </widget>
          <widget class="QPushButton" name="pushbutton_PIDtrajectorystop">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
           <property name="geometry">
            <rect>
             <x>90</x>
@@ -3484,54 +3450,14 @@
         </font>
        </property>
        <property name="title">
-        <string>Current Plot</string>
+        <string>Map Size</string>
        </property>
-       <widget class="QComboBox" name="combobo_controlmodechooseplot">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>30</y>
-          <width>140</width>
-          <height>22</height>
-         </rect>
-        </property>
-        <item>
-         <property name="text">
-          <string>Real Trajectory</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Set Trajectory</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>P value</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>I value</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>D value</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Setpoint/Output</string>
-         </property>
-        </item>
-       </widget>
        <widget class="QLabel" name="NULL_label_66">
         <property name="geometry">
          <rect>
-          <x>190</x>
-          <y>20</y>
-          <width>30</width>
+          <x>70</x>
+          <y>40</y>
+          <width>50</width>
           <height>20</height>
          </rect>
         </property>
@@ -3543,14 +3469,14 @@
          </font>
         </property>
         <property name="text">
-         <string>Max:</string>
+         <string>Width</string>
         </property>
        </widget>
-       <widget class="QLineEdit" name="lineedit_controlmodeplotmin">
+       <widget class="QLineEdit" name="lineedit_controlmodeplotheight">
         <property name="geometry">
          <rect>
-          <x>330</x>
-          <y>20</y>
+          <x>290</x>
+          <y>40</y>
           <width>70</width>
           <height>20</height>
          </rect>
@@ -3564,7 +3490,7 @@
          </font>
         </property>
         <property name="text">
-         <string>0</string>
+         <string>1000</string>
         </property>
         <property name="readOnly">
          <bool>false</bool>
@@ -3573,9 +3499,9 @@
        <widget class="QLabel" name="NULL_label_67">
         <property name="geometry">
          <rect>
-          <x>300</x>
-          <y>20</y>
-          <width>30</width>
+          <x>240</x>
+          <y>40</y>
+          <width>50</width>
           <height>20</height>
          </rect>
         </property>
@@ -3587,14 +3513,14 @@
          </font>
         </property>
         <property name="text">
-         <string>Min:</string>
+         <string>Height</string>
         </property>
        </widget>
-       <widget class="QLineEdit" name="lineedit_controlmodeplotmax">
+       <widget class="QLineEdit" name="lineedit_controlmodeplotwidth">
         <property name="geometry">
          <rect>
-          <x>220</x>
-          <y>20</y>
+          <x>120</x>
+          <y>40</y>
           <width>70</width>
           <height>20</height>
          </rect>
@@ -3608,25 +3534,106 @@
          </font>
         </property>
         <property name="text">
-         <string>0</string>
+         <string>1000</string>
         </property>
         <property name="readOnly">
          <bool>false</bool>
         </property>
        </widget>
-       <widget class="QCheckBox" name="checkbox_controlmodeplotautoscale">
-        <property name="geometry">
-         <rect>
-          <x>270</x>
-          <y>50</y>
-          <width>90</width>
-          <height>19</height>
-         </rect>
-        </property>
+      </widget>
+      <widget class="QComboBox" name="combobox_PIDloopchoose">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>420</y>
+         <width>130</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="currentIndex">
+        <number>0</number>
+       </property>
+       <item>
         <property name="text">
-         <string>Autoscale</string>
+         <string>X loop</string>
         </property>
-       </widget>
+       </item>
+       <item>
+        <property name="text">
+         <string>Y loop</string>
+        </property>
+       </item>
+      </widget>
+      <widget class="QCheckBox" name="checkbox_PIDwritingenabled">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>510</y>
+         <width>121</width>
+         <height>19</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Writing Enabled</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineedit_PIDcontroldatafilename">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>482</y>
+         <width>120</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>OCR A Extended</family>
+         <pointsize>10</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="readOnly">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="NULL_label_68">
+       <property name="geometry">
+        <rect>
+         <x>152</x>
+         <y>482</y>
+         <width>30</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>.csv</string>
+       </property>
       </widget>
      </widget>
     </widget>

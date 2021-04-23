@@ -11,7 +11,8 @@ CONFIG += c++11
 SOURCES += \
     log_class.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    pid.cpp
 
 HEADERS += \
     log_class.h \

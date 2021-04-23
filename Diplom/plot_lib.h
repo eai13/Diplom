@@ -236,18 +236,24 @@ public:
         this->chart->legend()->hide();
 
         // Adding series to the chart
-        this->series = new QLineSeries;
-        this->chart->addSeries(this->series);
-        this->series->attachAxis(this->axis_x);
-        this->series->attachAxis(this->axis_y);
+        this->set_series = new QLineSeries;
+        this->chart->addSeries(this->set_series);
+        this->set_series->attachAxis(this->axis_x);
+        this->set_series->attachAxis(this->axis_y);
 
-        this->series->setName("Map");
+        this->set_series->setName("Map");
+
+        this->real_series = new QLineSeries;
+        this->chart->addSeries(this->real_series);
+        this->real_series->attachAxis(this->axis_x);
+        this->real_series->attachAxis(this->axis_y);
+        this->real_series->setPen(QPen(QBrush(QColor(0, 255, 0)), 1));
 
         this->red_dot = new QLineSeries;
         this->chart->addSeries(this->red_dot);
         this->red_dot->attachAxis(this->axis_x);
         this->red_dot->attachAxis(this->axis_y);
-        this->red_dot->setPen(QPen(QBrush(QColor(255, 0, 0)), 10));
+        this->red_dot->setPen(QPen(QBrush(QColor(255, 0, 0)), 5));
 
         this->qcv = new QChartView(this->chart);
         this->qcv->setFixedSize(350, 300);
@@ -262,33 +268,57 @@ public:
         logfile->write_begin(name, func);
         logfile->write_event(name, func, "X", x);
         logfile->write_event(name, func, "Y", y);
+        this->set_series->append(x, y);
         this->red_dot->clear();
         this->red_dot->append(x, y);
         this->red_dot->append(x, y);
-        this->series->append(x, y);
+        logfile->write_end(name, func);
+    }
+
+    void AddRealTrajectoryPoint(float x, float y){
+        std::string func = "AddRealTrajectoryPoint";
+        logfile->write_begin(name, func);
+        this->real_series->append(x, y);
+        this->red_dot->clear();
+        this->red_dot->append(x, y);
+        this->red_dot->append(x, y);
+        logfile->write_end(name, func);
+    }
+
+    void RemovePoint(void){
+        std::string func = "RemovePoint";
+        logfile->write_begin(name, func);
+
+        if (this->set_series->count() > 0) this->set_series->remove(this->set_series->count() - 1);
+        this->red_dot->clear();
+
         logfile->write_end(name, func);
     }
 
     void Clear(void){
         std::string func = "Clear";
         logfile->write_begin(name, func);
-        this->series->clear();
+        this->set_series->clear();
         this->red_dot->clear();
+        this->real_series->clear();
         logfile->write_end(name, func);
     }
 
-    void SetSize(int32_t width, int32_t height){
+    void SetSize(int32_t width = -1, int32_t height = -1){
         std::string func = "SetSize";
         logfile->write_begin(name, func);
-        uint32_t wid, hei;
-        if (width <= 0) wid = 100;
-        else wid = width;
-        if (height <= 0) hei = 100;
-        else hei = height;
-        logfile->write_event(name, func, "Width", wid);
-        logfile->write_event(name, func, "Height", hei);
-        this->axis_x->setMax(wid);
-        this->axis_y->setMax(hei);
+        if (width > 0) this->axis_x->setMax(width);
+        if (height > 0) this->axis_y->setMax(height);
+        logfile->write_event(name, func, "Width", width);
+        logfile->write_event(name, func, "Height", height);
+        logfile->write_end(name, func);
+    }
+
+    void SetActive(bool state){
+        std::string func = "SetActive";
+        logfile->write_begin(name, func);
+        this->qcv->setVisible(state);
+        logfile->write_event(name, func, "active", 1);
         logfile->write_end(name, func);
     }
 
@@ -299,7 +329,7 @@ public:
         this->axis_x->~QValueAxis();
         this->axis_y->~QValueAxis();
         this->chart->~QChart();
-        this->series->~QLineSeries();
+        this->set_series->~QLineSeries();
         logfile->write_end(name, func);
     }
 
@@ -308,7 +338,8 @@ private:
     QValueAxis *                axis_x;
     QValueAxis *                axis_y;
     QChart *                    chart;
-    QLineSeries *               series;
+    QLineSeries *               set_series;
+    QLineSeries *               real_series;
     QLineSeries *               red_dot;
     std::string                 name;
 };

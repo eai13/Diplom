@@ -46,11 +46,11 @@ Serial *    serial;
 double plotting_time = 0;
 
 // Plotting
-TimePlot * active_plot;
+static TimePlot * active_plot;
 std::array<TimePlot *, 10> plots;
 
-// Trajectory mapping
-MapPlot * map_plot;
+// Control plots
+MapPlot * RealTrajectory;
 
 // Plots clearing function
 void clear_plots(void){
@@ -62,23 +62,35 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
     ui->setupUi(this);
 
+    // Trajectory
+    RealTrajectory = new MapPlot(ui->horizontalframe_trajectory);
+    RealTrajectory->SetActive(true);
+
     std::string func = "Constructor";
     logfile->write_begin(name, func);
 
     // Set validators
     ui->lineedit_comport->setValidator(new QIntValidator(0, 99, this));
     ui->lineedit_webcamnumber->setValidator(new QIntValidator(0, 99, this));
+    ui->lineedit_Pvalue->setValidator(new QDoubleValidator(-999, 999, 2, this));
+    ui->lineedit_Ivalue->setValidator(new QDoubleValidator(-999, 999, 2, this));
+    ui->lineedit_Dvalue->setValidator(new QDoubleValidator(-999, 999, 2, this));
+    ui->lineedit_PIDcontrolsaturationmax->setValidator(new QDoubleValidator(-999, 999, 2, this));
+    ui->lineedit_PIDcontrolsaturationmin->setValidator(new QDoubleValidator(-999, 999, 2, this));
+    ui->lineedit_trajectoryx->setValidator(new QIntValidator(0, 1500, this));
+    ui->lineedit_trajectoryy->setValidator(new QIntValidator(0, 1500, this));
+    ui->lineedit_controlmodeplotheight->setValidator(new QDoubleValidator(0, 9999, 2, this));
+    ui->lineedit_controlmodeplotwidth->setValidator(new QDoubleValidator(0, 9999, 2, this));
 
     // Set up the map files
     camera = new Camera;
     serial = new Serial;
     robotino = new Robotino;
 
-    // Map plotting
-    map_plot = new MapPlot(ui->horizontalframe_trajectory);
+    std::vector<QString> names;
 
     // Gyro plot setup
-    std::vector<QString> names;
+    names.clear();
     names.push_back("Gyro X");
     names.push_back("Gyro Y");
     names.push_back("Gyro Z");
@@ -474,39 +486,6 @@ void MainWindow::on_pushbutton_setwritingperiod_clicked(){
     }
     logfile->write_event(name, func, "Robotino timer start", 1);
     robot_data_timer->start(ui->lineedit_writingperiod->text().toInt());
-
-    logfile->write_end(name, func);
-}
-
-// Stopping the robot
-void MainWindow::on_pushbutton_speedreset_clicked(){
-    std::string func = "on_pushbutton_speedreset_clicked";
-    logfile->write_begin(name, func);
-
-    if (ui->combobox_speedsettype->currentText() == "Axial") robotino->set_speed_cartesian(0, 0, 0);
-    else robotino->set_speed_motors(0, 0, 0);
-
-    ui->lineedit_speedset1->setText("0");
-    ui->lineedit_speedset2->setText("0");
-    ui->lineedit_speedset3->setText("0");
-
-    logfile->write_end(name, func);
-}
-
-// Setting the speed
-void MainWindow::on_pushbutton_speedset_clicked(){
-    std::string func = "on_pushbutton_speedset_clicked";
-    logfile->write_begin(name, func);
-
-    logfile->write_event(name, func, "Speed set correct", ((ui->lineedit_speedset1->text().length() > 0) && (ui->lineedit_speedset2->text().length() > 0) && (ui->lineedit_speedset3->text().length() > 0)));
-    if ((ui->lineedit_speedset1->text().length() > 0) && (ui->lineedit_speedset2->text().length() > 0) && (ui->lineedit_speedset3->text().length() > 0)){
-        if (ui->combobox_speedsettype->currentText() == "Axial"){
-            robotino->set_speed_cartesian(ui->lineedit_speedset1->text().toInt(), ui->lineedit_speedset2->text().toInt(), ui->lineedit_speedset3->text().toInt());
-        }
-        else if (ui->combobox_speedsettype->currentText() == "Local"){
-            robotino->set_speed_motors(ui->lineedit_speedset1->text().toInt(), ui->lineedit_speedset2->text().toInt(), ui->lineedit_speedset3->text().toInt());
-        }
-    }
 
     logfile->write_end(name, func);
 }

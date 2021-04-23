@@ -71,6 +71,28 @@ private slots:
 
     void on_checkbox_autoscalemode_stateChanged(int arg1);
 
+    void on_tabwidget_controlmode_currentChanged(int index);
+
+    void on_pushbutton_PIDcoefsset_clicked();
+
+    void on_pushbutton_PIDtrajectoryadd_clicked();
+
+    void on_pushbutton_PIDtrajectorystop_clicked();
+
+    void on_pushbutton_PIDtrajectorydelete_clicked();
+
+    void on_pushbutton_PIDtrajectoryclear_clicked();
+
+    void on_lineedit_controlmodeplotwidth_editingFinished();
+
+    void on_lineedit_controlmodeplotheight_editingFinished();
+
+    void on_combobox_PIDloopchoose_currentIndexChanged(int index);
+
+    void on_pushbutton_PIDtrajectorystart_clicked();
+
+    void PID_control_func();
+
 private:
     Ui::MainWindow *ui;
 };

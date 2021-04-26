@@ -367,6 +367,8 @@ void MainWindow::on_pushbutton_connect_clicked(){
         ui->lineedit_speedset2->setText("0");
         ui->lineedit_speedset3->setText("0");
 
+        ui->tabwidget_maindata->setEnabled(true);
+
         clear_plots();
 
         // Setting the processing type for all fields

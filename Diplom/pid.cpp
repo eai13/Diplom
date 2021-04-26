@@ -228,6 +228,8 @@ void MainWindow::on_pushbutton_PIDtrajectorystop_clicked(){
     ui->pushbutton_PIDtrajectorystart->setEnabled(true);
     ui->pushbutton_PIDtrajectorystop->setEnabled(false);
 
+    ui->groupbox_connection->setEnabled(true);
+
     logfile->write_end(name, func);
 }
 
@@ -257,6 +259,8 @@ void MainWindow::on_combobox_PIDloopchoose_currentIndexChanged(int index){
     logfile->write_end(name, func);
 }
 
+double FI;
+uint8_t flag_start = 0;
 // Start the ride for PID
 void MainWindow::on_pushbutton_PIDtrajectorystart_clicked(){
     std::string func = "on_pushbutton_PIDtrajectorystart_clicked";
@@ -268,6 +272,8 @@ void MainWindow::on_pushbutton_PIDtrajectorystart_clicked(){
             PIDfile << "TIME (sec);X;Setpoint X;Y;Setpoint Y;P;I;D;Saturation Min;Saturation Max;P Value X;I Value X;D value X;P Value Y;I Value Y;D Value Y;Speed X;Speed Y" << std::endl;
         }
 
+        ui->groupbox_connection->setEnabled(false);
+
         ui->pushbutton_PIDtrajectorystop->setEnabled(true);
         ui->pushbutton_PIDtrajectorystart->setEnabled(false);
         ui->pushbutton_PIDtrajectorydelete->setEnabled(false);
@@ -275,10 +281,13 @@ void MainWindow::on_pushbutton_PIDtrajectorystart_clicked(){
         ui->lineedit_PIDcontroldatafilename->setEnabled(false);
         ui->checkbox_PIDwritingenabled->setEnabled(false);
 
+        set_trajectory_copy = set_trajectory;
+
+        FI = 0;
+        flag_start = 0;
+
         connect(PID_control_timer, SIGNAL(timeout()), this, SLOT(PID_control_func()));
         PID_control_timer->start(500);
-
-        set_trajectory_copy = set_trajectory;
     }
 
     logfile->write_end(name, func);
@@ -292,8 +301,16 @@ void MainWindow::PID_control_func(){
     double DvalueY = 0;
     double SpeedX = 0;
     double SpeedY = 0;
+    double FP = 0;
+    double SpeedFi = 0;
     std::array<float, 6> position = camera->get_position();
-    if (set_trajectory_copy.size() > 0){
+    if ((flag_start == 0) && (std::abs(270 - position[2]) > 5)){
+        FP = (270 - position[2]) * 0.02;
+        FI += (270 - position[2]) * 0.01;
+        robotino->set_speed_cartesian(0, 0, FP + FI);
+    }
+    else if (set_trajectory_copy.size() > 0){
+        flag_start = 1;
         RealTrajectory->AddRealTrajectoryPoint(position[0], position[1]);
         if ((std::abs(set_trajectory_copy.front()[0] - position[0]) < 10) && (std::abs(set_trajectory_copy.front()[1] - position[1]) < 10)){
             set_trajectory_copy.pop_front();
@@ -317,7 +334,9 @@ void MainWindow::PID_control_func(){
             if (SpeedY > SatMax) SpeedY = SatMax;
             if (SpeedY < SatMin) SpeedY = SatMin;
 
-            robotino->set_speed_cartesian(SpeedX, SpeedY, 0);
+            SpeedFi = (270 - position[2]) * 0.5;
+
+            robotino->set_speed_cartesian(SpeedX, -SpeedY, SpeedFi);
 
             if (ui->combobox_PIDloopchoose->currentIndex() == 0){
                 ui->lcdnumber_Pcoef->display(PvalueX);
